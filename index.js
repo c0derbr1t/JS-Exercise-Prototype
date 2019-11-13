@@ -46,36 +46,10 @@ function Person(name, age){
 }
 
 Person.prototype.eat = function(edible){
-  // console.log(this.stomach.length);
   if (this.stomach.length < 10){
     this.stomach.push(edible);
   }
-
-  // do {
-  //   this.stomach.push(edible);
-  // }
-  // while (this.stomach <= 10);
 }
-
-// Person.prototype.eat = function(someFood){
-//   // console.log(this.stomach.length);
-//   while (this.stomach.length < 11){
-//     for (let i=0; i<someFood.length; i++){
-//       this.stomach.push(someFood[i]);
-//     }
-//   }
-// }
-
-// Person.prototype.eat = function(someFood){
-//   // console.log(this.stomach.length);
-//   do {
-//     for (let i=0; i<someFood.length; i++){
-//       this.stomach.push(someFood[i]);
-//     }
-//   }
-//   while (this.stomach.length < 10);
-//   // console.log(this.stomach.length, this.stomach);
-// }
 
 Person.prototype.poop = function(){
   this.stomach = [];
@@ -122,9 +96,32 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age),
+  this.favoriteToy = favoriteToy
 }
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+
+/*
+function Dog(dogAttributes) {
+  // Connect the attributes so we can use the this keyword
+  Animal.call(this, dogAttributes);
+  this.name = dogAttributes.name;
+  this.bark = dogAttributes.bark;
+}
+// Set up our __proto__ inheritance to Animal
+Dog.prototype = Object.create(Animal.prototype);
+
+Dog.prototype.speak = function() {
+  console.log(`${this.name} says: ${this.bark}`);
+}
+*/
+
 
 /* 
   TASK 4
