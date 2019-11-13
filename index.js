@@ -28,20 +28,64 @@ Airplane.prototype.land = function () {
 
 /*
   TASK 1
-    - Write a Person Constructor that initializes `name` and `age` from arguments.
-    - All instances of Person should initialize with an empty `stomach` array.
-    - Give instances of Person the ability to `.eat("someFood")`:
+    *- Write a Person Constructor that initializes `name` and `age` from arguments.
+    *- All instances of Person should initialize with an empty `stomach` array.
+    *- Give instances of Person the ability to `.eat("someFood")`:
         + When eating an edible, it should be pushed into the `stomach`.
         + The `eat` method should have no effect if there are 10 items in the `stomach`.
-    - Give instances of Person the ability to `.poop()`:
+    *- Give instances of Person the ability to `.poop()`:
         + When an instance poops, its `stomach` should empty.
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age){
+  this.name = name,
+  this.age = age,
+  this.stomach = []
 }
+
+Person.prototype.eat = function(edible){
+  // console.log(this.stomach.length);
+  if (this.stomach.length < 10){
+    this.stomach.push(edible);
+  }
+
+  // do {
+  //   this.stomach.push(edible);
+  // }
+  // while (this.stomach <= 10);
+}
+
+// Person.prototype.eat = function(someFood){
+//   // console.log(this.stomach.length);
+//   while (this.stomach.length < 11){
+//     for (let i=0; i<someFood.length; i++){
+//       this.stomach.push(someFood[i]);
+//     }
+//   }
+// }
+
+// Person.prototype.eat = function(someFood){
+//   // console.log(this.stomach.length);
+//   do {
+//     for (let i=0; i<someFood.length; i++){
+//       this.stomach.push(someFood[i]);
+//     }
+//   }
+//   while (this.stomach.length < 10);
+//   // console.log(this.stomach.length, this.stomach);
+// }
+console.log(Person());
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
+
 
 /*
   TASK 2
