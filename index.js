@@ -76,7 +76,6 @@ Person.prototype.eat = function(edible){
 //   while (this.stomach.length < 10);
 //   // console.log(this.stomach.length, this.stomach);
 // }
-console.log(Person());
 
 Person.prototype.poop = function(){
   this.stomach = [];
@@ -101,8 +100,19 @@ Person.prototype.toString = function(){
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+  this.model = model,
+  this.milesPerGallon = milesPerGallon,
+  this.tank = 0,
+  this.odometer = 0
+}
 
+Car.prototype.fill = function(gallons){
+  this.tank = this.tank + gallons;
+}
+
+Car.prototype.drive = function(distance){
+  this.odometer = this.odometer + distance;
 }
 
 /*
