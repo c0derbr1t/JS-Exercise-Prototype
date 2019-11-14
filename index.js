@@ -89,16 +89,15 @@ Car.prototype.drive = function(distance){
   this.odometer = this.odometer + distance;
   let used = distance / this.milesPerGallon;
   let left = this.tank - used;
-  if (left < 0){
-    this.tank = 0;
-  } else {
+  let max = this.tank * this.milesPerGallon;
+  if (distance <= max){
     this.tank = left;
+    this.odometer = distance;
+  } else{
+    this.tank = 0;
+    this.odometer =  max;
+    return `I ran out of fuel at ${this.odometer} miles!`;
   }
-  // if (this.tank = 0){
-  //   return `I ran out of fuel at ${this.odometer} miles!`;
-
-  // }
-  
 }
 
 /*
@@ -119,30 +118,18 @@ Baby.prototype.play = function(){
   return `Playing with ${this.favoriteToy}`;
 }
 
-/*
-function Dog(dogAttributes) {
-  // Connect the attributes so we can use the this keyword
-  Animal.call(this, dogAttributes);
-  this.name = dogAttributes.name;
-  this.bark = dogAttributes.bark;
-}
-// Set up our __proto__ inheritance to Animal
-Dog.prototype = Object.create(Animal.prototype);
-
-Dog.prototype.speak = function() {
-  console.log(`${this.name} says: ${this.bark}`);
-}
-*/
-
-
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+
+  1. Global Binding: When *this* is called without something higher to bind to, it will tie to the window/console...it returns ALL of JS.
+
+  2. Implicit Binding: Inside of a function in an object/function, it will bind to that object/function.
+
+  3. New Binding: This is inside of a Constructor Function. It binds new properties to objects made with it by using *this* in the constructor.
+  
+  4. Explicit Binding: This overrides other binding by telling it specifically what to bind to when you call it.
 */
 
 
